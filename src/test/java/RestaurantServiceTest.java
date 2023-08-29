@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +19,7 @@ class RestaurantServiceTest {
         restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Non-Vegetable lasagne", 350);
     }
 
 
@@ -61,4 +64,15 @@ class RestaurantServiceTest {
         assertEquals(initialNumberOfRestaurants + 1,service.getRestaurants().size());
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void selected_item_from_restaurant_menu_should_Calculate_Order_Price(){
+        List<Item> selectedMenu=new ArrayList<Item>();
+        selectedMenu.add(new Item("Vegetable lasagne", 269));
+        selectedMenu.add(new Item("Non-Vegetable lasagne", 350));
+        int totalPrice=service.calculateOrderPrice("Amelie's cafe",selectedMenu);
+        assertEquals(619,totalPrice);
+
+
+    }
 }

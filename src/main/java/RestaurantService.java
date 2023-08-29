@@ -37,4 +37,17 @@ public class RestaurantService {
     public List<Restaurant> getRestaurants() {
         return restaurants;
     }
+
+    public int calculateOrderPrice(String name, List<Item> selectedMenu) {
+        int TotalCost=0;
+        for(Restaurant rest:restaurants){
+            if(rest.getName()==name){
+                for (Item item:selectedMenu)
+                {
+                    TotalCost+=item.getPrice();
+                }
+            }
+        }
+        return TotalCost;
+    }
 }

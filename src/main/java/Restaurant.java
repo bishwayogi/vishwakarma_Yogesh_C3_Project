@@ -70,12 +70,4 @@ public class Restaurant {
         return name;
     }
 
-    public LocalTime getOpeningTime() {
-        return openingTime;
-    }
-
-    public LocalTime getClosingTime() {
-        return closingTime;
-    }
-
 }
